@@ -72,7 +72,7 @@ variable "deletion_protection" {
 }
 
 variable "backup_retention_period" {
-  description = "Days of automated backup retention (0 disables backups)"
+  description = "Days of automated backup retention (0 disables backups). Default is 7 to stay safe within RDS free tier (20 GB backup storage limit) while providing a meaningful recovery window."
   type        = number
-  default     = 0
+  default     = 7
 }
