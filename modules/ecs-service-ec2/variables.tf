@@ -18,14 +18,26 @@ variable "container_port" {
   type        = number
 }
 
-variable "cpu" {
-  description = "CPU units for the task"
+variable "task_cpu" {
+  description = "CPU units at the task definition level. Leave null to omit."
+  type        = number
+  default     = null
+}
+
+variable "task_memory" {
+  description = "Memory (MiB) at the task definition level. Leave null to omit."
+  type        = number
+  default     = null
+}
+
+variable "container_cpu" {
+  description = "CPU units at the container level"
   type        = number
   default     = 256
 }
 
-variable "memory" {
-  description = "Memory (MiB) for the task"
+variable "container_memory" {
+  description = "Memory (MiB) at the container level"
   type        = number
   default     = 512
 }

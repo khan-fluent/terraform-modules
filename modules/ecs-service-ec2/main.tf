@@ -87,8 +87,8 @@ resource "aws_ecs_task_definition" "this" {
   family                   = var.service_name
   network_mode             = var.network_mode
   requires_compatibilities = ["EC2"]
-  cpu                      = var.cpu
-  memory                   = var.memory
+  cpu                      = var.task_cpu
+  memory                   = var.task_memory
   execution_role_arn       = aws_iam_role.task_execution.arn
   task_role_arn            = aws_iam_role.task.arn
 
@@ -96,8 +96,8 @@ resource "aws_ecs_task_definition" "this" {
     {
       name      = var.service_name
       image     = "${var.ecr_repository_url}:latest"
-      cpu       = var.cpu
-      memory    = var.memory
+      cpu       = var.container_cpu
+      memory    = var.container_memory
       essential = true
 
       portMappings = [
