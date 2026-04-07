@@ -55,7 +55,7 @@ locals {
 resource "aws_iam_role_policy" "task_execution_secrets" {
   count = local.needs_secrets_policy ? 1 : 0
 
-  name = "${var.service_name}-task-secrets"
+  name = var.execution_role_secrets_policy_name != "" ? var.execution_role_secrets_policy_name : "${var.service_name}-task-secrets"
   role = aws_iam_role.task_execution.id
 
   policy = jsonencode({

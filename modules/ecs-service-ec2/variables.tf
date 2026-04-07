@@ -90,6 +90,12 @@ variable "execution_role_ssm_parameter_arns" {
   default     = []
 }
 
+variable "execution_role_secrets_policy_name" {
+  description = "Override the inline policy name. Defaults to '<service_name>-task-secrets'."
+  type        = string
+  default     = ""
+}
+
 variable "task_role_inline_policies" {
   description = "Map of inline policy name -> JSON policy document for the task (application) role"
   type        = map(string)
