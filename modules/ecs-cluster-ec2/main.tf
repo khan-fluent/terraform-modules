@@ -60,11 +60,15 @@ resource "aws_launch_template" "ecs" {
     }
   }
 
-  user_data = base64encode(<<-EOF
+  # Note: replace(\r,) ensures the user_data is byte-identical regardless of
+  # whether this file is checked out on Windows (CRLF) or Unix (LF). Without
+  # it the base64-encoded user_data drifts and forces a launch template
+  # update.
+  user_data = base64encode(replace(<<-EOF
     #!/bin/bash
     echo "ECS_CLUSTER=${var.cluster_name}" >> /etc/ecs/ecs.config
   EOF
-  )
+  , "\r", ""))
 
   tag_specifications {
     resource_type = "instance"

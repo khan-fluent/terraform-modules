@@ -86,7 +86,7 @@ resource "aws_cloudwatch_metric_alarm" "rds_connections_high" {
   period              = 300
   statistic           = "Average"
   threshold           = var.rds_connections_threshold
-  alarm_description   = "RDS connections > ${var.rds_connections_threshold}"
+  alarm_description   = "RDS connections > ${var.rds_connections_threshold} (max ~85 for t3.micro)"
   alarm_actions       = [aws_sns_topic.alerts.arn]
 
   dimensions = {
