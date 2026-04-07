@@ -143,4 +143,12 @@ resource "aws_ecs_service" "this" {
   }
 
   tags = var.tags
+
+  # The GitHub Actions deploy workflow renders new task definition revisions
+  # out-of-band on every push to main. Without this ignore_changes block,
+  # `terraform apply` would revert the service to the revision Terraform
+  # last managed, which would roll back the app.
+  lifecycle {
+    ignore_changes = [task_definition, desired_count]
+  }
 }

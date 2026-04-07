@@ -15,6 +15,12 @@ variable "force_delete" {
   default     = true
 }
 
+variable "lifecycle_description" {
+  description = "Description string for the ECR lifecycle policy rule"
+  type        = string
+  default     = "Keep only the most recent images"
+}
+
 variable "tags" {
   description = "Resource tags"
   type        = map(string)
