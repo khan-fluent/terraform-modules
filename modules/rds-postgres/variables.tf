@@ -72,7 +72,7 @@ variable "deletion_protection" {
 }
 
 variable "backup_retention_period" {
-  description = "Days of automated backup retention (0 disables backups). Default is 7 to stay safe within RDS free tier (20 GB backup storage limit) while providing a meaningful recovery window."
+  description = "Days of automated backup retention (0 disables backups). Default is 1 because the AWS Free Tier program enforces a hard cap of 1 day for RDS automated backups (FreeTierRestrictionError on apply). For paid accounts, override to 7+ days."
   type        = number
-  default     = 7
+  default     = 1
 }
